@@ -1,0 +1,130 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        preview {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            force 'com.android.support:support-v4:27.1.1'
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    api rootProject.ext.dependencies["kotlin-stdlib-jdk7"]
+    api rootProject.ext.dependencies["kotlin-reflect"]
+    api rootProject.ext.dependencies["appcompat"]
+    api rootProject.ext.dependencies["core-ktx"]
+    api rootProject.ext.dependencies["constraintlayout"]
+
+    ///Anko
+    api rootProject.ext.dependencies["anko-common"]
+
+    ///Meterial
+    api rootProject.ext.dependencies["material"]
+
+    ///Multidex
+    api rootProject.ext.dependencies["multidex"]
+
+    ///Retrofit
+    api rootProject.ext.dependencies["okhttp"]
+    api rootProject.ext.dependencies["okhttp-logging-interceptor"]
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["retrofit-converter-gson"]
+    api rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
+
+    ///RxKotlin and RxAndroid
+    api rootProject.ext.dependencies["rxkotlin2"]
+    api rootProject.ext.dependencies["rxandroid2"]
+
+    ///Dagger
+    api rootProject.ext.dependencies["dagger2"]
+    kapt rootProject.ext.dependencies["dagger2-compiler"]
+    api rootProject.ext.dependencies["dagger2-android"]
+    kapt rootProject.ext.dependencies["dagger2-android-processor"]
+    api rootProject.ext.dependencies["dagger2-android-support"]
+
+    ///RxCache2
+    api(rootProject.ext.dependencies["rxcache2"]) {
+        exclude module: 'rxjava'
+        exclude module: 'dagger'
+        exclude module: 'api'
+    }
+    implementation(rootProject.ext.dependencies["rxcache-jolyglot-gson"]) {
+        exclude module: 'gson'
+    }
+
+    ///Glide
+    api rootProject.ext.dependencies["glide"]
+    api rootProject.ext.dependencies["glide-transformations"]
+
+    ///Gson
+    api rootProject.ext.dependencies["gson"]
+
+    ///StateView
+    api rootProject.ext.dependencies["stateview"]
+
+    ///Parallaxbacklayout
+    api rootProject.ext.dependencies["parallaxbacklayout"]
+
+    ///Timber
+    api rootProject.ext.dependencies["timber"]
+
+    ///Permission
+    api rootProject.ext.dependencies["easypermissions"]
+
+    ///EventBus
+    compileOnly rootProject.ext.dependencies["rxbus"]
+    compileOnly rootProject.ext.dependencies["eventbus"]
+    compileOnly rootProject.ext.dependencies["otto"]
+    compileOnly rootProject.ext.dependencies["rxbus"]
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mRootView"
+    style="@style/MatchAndMatch"
+    android:background="@color/colorGlobalBackground"
+    android:orientation="horizontal">
+
+    <WebView
+        android:id="@+id/mWebView"
+        style="@style/MatchAndMatch" />
+
+</LinearLayout>
