@@ -1,4 +1,4 @@
-rootProject.name='WSGithubAppKotlin'
+rootProject.name='Cams'
 include ':cams-mvvm-template'
 include ':cams'
 include ':cams-mvp'

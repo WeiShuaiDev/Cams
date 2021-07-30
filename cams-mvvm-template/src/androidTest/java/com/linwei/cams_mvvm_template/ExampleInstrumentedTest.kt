@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.linwei.wsgithubappkotlin", appContext.packageName)
+        assertEquals("com.linwei.cams_mvvm_template", appContext.packageName)
     }
 }
